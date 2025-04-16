@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Doctor List</title>
+  <link rel="stylesheet" href="doctor-list.css" />
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="logo">NovaCare Multispeciality Hospital</div>
+    <ul>
+      <li><a href="homepage.html">Home</a></li>
+      <li><a href="#">Doctors</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Doctor List Section -->
+  <section class="doctor-list-section">
+    <h1>Find a Doctor</h1>
+
+    <!-- Filter & Search -->
+    <div class="filter-container">
+      <div class="search-container">
+        <input type="text" id="doctor-search" placeholder="Search doctor by name..." />
+      </div>
+
+      <label for="doctor-filter">Filter by Specialization:</label>
+      <select id="doctor-filter">
+        <option value="all">All</option>
+        <option value="cardiologist">Cardiologist</option>
+        <option value="neurologist">Neurologist</option>
+        <option value="orthopedic">Orthopedic</option>
+        <option value="dentist">Dentist</option>
+        <option value="dermatologist">Dermatologist</option>
+        <option value="pediatrician">Pediatrician</option>
+      </select>
+    </div>
+
+    <!-- Doctor Cards -->
+    <div class="doctor-list">
+      <!-- Cardiologist -->
+      <div class="doctor-card cardiologist">
+        <img src="images/cardiologist1.jpg" alt="Dr. John Doe" />
+        <h3>Dr. John Doe</h3>
+        <p>Cardiologist</p>
+        <a href="appointment.html?name=Dr.%20John%20Doe&specialty=Cardiologist&image=images/cardiologist1.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <div class="doctor-card cardiologist">
+        <img src="images/cardiologist2.jpg" alt="Dr. Alex Turner" />
+        <h3>Dr. Alex Turner</h3>
+        <p>Cardiologist</p>
+        <a href="appointment.html?name=Dr.%20Alex%20Turner&specialty=Cardiologist&image=images/cardiologist2.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <!-- Neurologist -->
+      <div class="doctor-card neurologist">
+        <img src="images/neurologist1.jpg" alt="Dr. Sarah Smith" />
+        <h3>Dr. Sarah Smith</h3>
+        <p>Neurologist</p>
+        <a href="appointment.html?name=Dr.%20Sarah%20Smith&specialty=Neurologist&image=images/neurologist1.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <div class="doctor-card neurologist">
+        <img src="images/neurologist2.jpg" alt="Dr. Sophia Brown" />
+        <h3>Dr. Sophia Brown</h3>
+        <p>Neurologist</p>
+        <a href="appointment.html?name=Dr.%20Sophia%20Brown&specialty=Neurologist&image=images/neurologist2.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <!-- Orthopedic -->
+      <div class="doctor-card orthopedic">
+        <img src="images/orthopedic1.jpg" alt="Dr. David Lee" />
+        <h3>Dr. David Lee</h3>
+        <p>Orthopedic</p>
+        <a href="appointment.html?name=Dr.%20David%20Lee&specialty=Orthopedic&image=images/orthopedic1.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <div class="doctor-card orthopedic">
+        <img src="images/orthopedic2.jpg" alt="Dr. Jessica Adams" />
+        <h3>Dr. Jessica Adams</h3>
+        <p>Orthopedic</p>
+        <a href="appointment.html?name=Dr.%20Jessica%20Adams&specialty=Orthopedic&image=images/orthopedic2.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <!-- Pediatrician -->
+      <div class="doctor-card pediatrician">
+        <img src="images/pediatrician1.jpg" alt="Dr. Olivia Green" />
+        <h3>Dr. Olivia Green</h3>
+        <p>Pediatrician</p>
+        <a href="appointment.html?name=Dr.%20Olivia%20Green&specialty=Pediatrician&image=images/pediatrician1.jpg" class="book-btn">Book Appointment</a>
+      </div>
+
+      <div class="doctor-card pediatrician">
+        <img src="images/pediatrician2.jpg" alt="Dr. Ryan Cooper" />
+        <h3>Dr. Ryan Cooper</h3>
+        <p>Pediatrician</p>
+        <a href="appointment.html?name=Dr.%20Ryan%20Cooper&specialty=Pediatrician&image=images/pediatrician2.jpg" class="book-btn">Book Appointment</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Search & Filter Script -->
+  <script>
+    const doctorCards = document.querySelectorAll(".doctor-card");
+
+    // Filter by specialization
+    document.getElementById("doctor-filter").addEventListener("change", function () {
+      filterDoctors();
+    });
+
+    // Filter by name
+    document.getElementById("doctor-search").addEventListener("input", function () {
+      filterDoctors();
+    });
+
+    function filterDoctors() {
+      const selectedCategory = document.getElementById("doctor-filter").value;
+      const searchQuery = document.getElementById("doctor-search").value.toLowerCase();
+
+      doctorCards.forEach(card => {
+        const doctorName = card.querySelector("h3").innerText.toLowerCase();
+        const matchesCategory = selectedCategory === "all" || card.classList.contains(selectedCategory);
+        const matchesName = doctorName.includes(searchQuery);
+
+        card.style.display = matchesCategory && matchesName ? "block" : "none";
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Appointment</title>
+  <link rel="stylesheet" href="appointment-styles.css">
+</head>
+<body>
+
+  <div class="appointment-container">
+    <div class="appointment-box">
+      <h2>Book Your Appointment</h2>
+
+      <form id="appointment-form">
+        <!-- Doctor Details (Auto-filled) -->
+        <div class="doctor-details">
+          <!-- Added doctor image with default path -->
+          <!--<img id="doctor-image" src="images/default-doctor.jpg" alt="Doctor"> -->
+          <div class="doctor-info">
+            <h3 id="doctor-name">Dr. John Doe</h3>
+            <p id="doctor-specialty">Cardiologist</p>
+          </div>
+        </div>
+
+        <!-- Patient Name -->
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Date -->
+        <div class="form-group">
+          <label for="date">Select Date</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <!-- Time Slot Section -->
+        <div class="form-group">
+          <label>Select Time Slot</label>
+          <div class="time-slots" id="time-slots">
+            <span class="time-slot">10:00 AM</span>
+            <span class="time-slot">10:30 AM</span>
+            <span class="time-slot">11:00 AM</span>
+            <span class="time-slot">11:30 AM</span>
+            <span class="time-slot">12:00 PM</span>
+            <span class="time-slot">2:00 PM</span>
+            <span class="time-slot">2:30 PM</span>
+            <span class="time-slot">3:00 PM</span>
+          </div>
+          <!-- Hidden input to capture selected time slot -->
+          <input type="hidden" id="time" name="time" required>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="book-btn">Confirm Appointment</button>
+      </form>
+
+      <!-- Success Message -->
+      <p id="confirmation-message" class="hidden">✅ Appointment booked successfully!</p>
+    </div>
+  </div>
+
+  <script>
+    // Extract doctor details from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    document.getElementById("doctor-name").innerText = params.get("name") || "Dr. John Doe";
+    document.getElementById("doctor-specialty").innerText = params.get("specialty") || "Specialist";
+    if (params.get("image")) {
+      document.getElementById("doctor-image").src = params.get("image");
+    }
+
+    // Handle time slot selection
+    const timeSlotElements = document.querySelectorAll('.time-slot');
+    const timeInput = document.getElementById('time');
+
+    timeSlotElements.forEach(slot => {
+      slot.addEventListener('click', () => {
+        timeSlotElements.forEach(s => s.classList.remove('selected'));
+        slot.classList.add('selected');
+        timeInput.value = slot.innerText;
+      });
+    });
+
+    // Form Submission Handling
+    document.getElementById("appointment-form").addEventListener("submit", function(event) {
+      event.preventDefault();
+      // Ensure a time slot is selected
+      if (!timeInput.value) {
+        alert("Please select a time slot.");
+        return;
+      }
+      document.getElementById("confirmation-message").classList.remove("hidden");
+      setTimeout(() => {
+        window.location.href = "homepage.html";
+      }, 2000);
+    });
+  </script>
+
+</body>
+</html>

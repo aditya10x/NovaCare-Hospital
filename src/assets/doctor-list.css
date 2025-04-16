@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background-color: #f8fcff;
+    color: #2c3e50;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  
+  .doctor-list-section {
+    padding-top: 100px;
+    text-align: center;
+  }
+  
+  .doctor-list-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+  }
+  
+  .filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+  }
+  
+  .search-container input,
+  #doctor-filter {
+    padding: 10px 70px;
+    font-size: 1.5rem;
+    border: 2px solid #3498db;
+    border-radius: 8px;
+    outline: none;
+    transition: 0.3s ease;
+  }
+  
+  .search-container input:focus,
+  #doctor-filter:focus {
+    background-color: #ecf7ff;
+    border-color: #007bff;
+  }
+  
+  /* ✅ THE GRID */
+  .doctor-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    width: 100%;
+    padding-bottom: 50px;
+  }
+  
+  .doctor-card {
+    background: white;
+    width: 100%;
+    max-width: 280px;
+    height: 400px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+  }
+  
+  .doctor-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .doctor-card img {
+    width: 100%;
+    height: 60%;
+    object-fit: cover;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .doctor-card h3 {
+    font-size: 1.2rem;
+    margin-top: 10px;
+  }
+  
+  .doctor-card p {
+    color: #3498db;
+    font-weight: 500;
+    margin: 4px 0 10px;
+  }
+  
+  .book-btn {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background 0.3s ease;
+    display: inline-block;
+  }
+  
+  .book-btn:hover {
+    background-color: #1f78b4;
+    transform: scale(1.05);
+  }
+  
+  @media (max-width: 768px) {
+    .filter-container {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .doctor-card {
+      max-width: 90%;
+    }
+  }
+  
